@@ -5,12 +5,12 @@ services:
     build: .
     container_name: gateway-bridge
     ports:
-      - "3001:3001"
+      - "${BRIDGE_PORT:-3003}:3001"
     environment:
       - PORT=3001
-      - THOR_GATEWAY_URL=ws://187.124.114.207:45397
-      - THOR_GATEWAY_TOKEN=MzLeAvE5uphx5w6WzwFHxJQdP1s4OalJ
-      - LOCAL_GATEWAY_URL=ws://host.docker.internal:45397
+      - THOR_GATEWAY_URL=${THOR_GATEWAY_URL:-ws://187.124.114.207:45397}
+      - THOR_GATEWAY_TOKEN=${THOR_GATEWAY_TOKEN:-MzLeAvE5uphx5w6WzwFHxJQdP1s4OalJ}
+      - LOCAL_GATEWAY_URL=${LOCAL_GATEWAY_URL:-ws://host.docker.internal:45397}
     restart: unless-stopped
     networks:
       - openclaw-network
